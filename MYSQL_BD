@@ -1,1 +1,25 @@
-
+CREATE DATABASE tiendecitaJMRM
+CHARSET utf8mb4
+COLLATE utf8mb4_spanish2_ci;
+USE tiendecitaJMRM;
+CREATE TABLE Articulos (
+    idArticulos INT AUTO_INCREMENT PRIMARY KEY,
+    descripcionArticulo VARCHAR(45) NOT NULL,
+    precioArticulo DECIMAL(50, 0) NOT NULL,
+    stockArticulo INT NOT NULL
+);
+CREATE TABLE Tickets (
+    idTickets INT AUTO_INCREMENT PRIMARY KEY,
+    fechaTicket DATE NOT NULL,
+    precioTotalTicket DECIMAL(10, 2) NOT NULL,
+    articulosTicket INT NOT NULL
+);
+CREATE TABLE Compras (
+    idCompras INT AUTO_INCREMENT PRIMARY KEY,
+    idArticulosFK INT NOT NULL,
+    idTicketsFK INT NOT NULL,
+    FOREIGN KEY (idArticulosFK) 
+    REFERENCES Articulos(idArticulos),
+    FOREIGN KEY (idTicketsFK) 
+    REFERENCES Tickets(idTickets)
+);
